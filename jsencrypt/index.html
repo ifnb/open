@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+	<head>
+		<title>RSA JS 加解密</title>
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script src="js/jsencrypt.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#testme').click(function() {
+					// 结果框
+					$("#result").hide();
+					// 公钥加密...
+					var encrypt = new JSEncrypt();
+					encrypt.setPublicKey($('#pubkey').val());
+					var encrypted = encrypt.encrypt($('#input').val());
+
+					// 私钥解密...
+					var decrypt = new JSEncrypt();
+					decrypt.setPrivateKey($('#privkey').val());
+					var uncrypted = decrypt.decrypt(encrypted);
+
+					// 解密验证.
+					if (uncrypted == $('#input').val()) {
+						$("#data").val($('#input').val());
+						$("#encode").val(encrypted);
+						$("#decode").val(uncrypted);
+						$("#result").show();
+						console.log("原始数据 => " + $('#input').val());
+						console.log("加密=> " + encrypted);
+						console.log("解密=> " + uncrypted);
+					} else {
+						$("#result").hide();
+						alert('解密失败....');
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div style="margin-left: 35%;">
+			<h2>在线RSA加解密DEMO</h2>
+			<label for="privkey">私钥</label><br />
+			<textarea id="privkey" rows="16" cols="100">
+-----BEGIN RSA PRIVATE KEY-----
+MIICXAIBAAKBgQCfqAsStaug53dBsHnNUjXTMag9C19BRdzKRNdjZnOd2mgwf8WT
+v80AYD2RNnGrzPkIydBIUUG7EP4ESH5PoasvA+SruR5IOzvQVvdjc2R6vtuvB9PU
+tznTHVz2EvsHizy6uyFHomgQwUuFudqhs99aMoLpCJwoQX9xFnH5bLgdhQIDAQAB
+AoGAOw3cMqpx9k1HhkuxcemzsQ+QDCxVqn4d4c8+4Cx4HW441Z+dRD5QpI/0le7O
+ct6ZSs/jM6yipH/vhUQPPIMvHto5+Omoe3pFni3krH9l55D7aVfGMMVXdMUZI4uS
+4GnNrsTMHHQen1SaW1tR4KgPXKOZLKe5a3Mn6AzrJ6JzZ4ECQQDOPhDCxKMXSU30
+dXjJ37MSOjFKa8x09SLo5O9A+b+bSa1mlzL1J/A3HDZcZY1xtlNK6ZikHQ3uc3sX
+jEMvIc0lAkEAxiy7+oyT2D9tmJm8vmyo7v52pCPF8W9XanzFqhIiydXLCUEFDh9M
+yVHKdowBqW6wIORobfqpBiP5PVnEasaQ4QJAKqtunk0+jNfOuBAB0IpmqxO9FO+e
+mmgJM/QBiAjj2oXwyTPpCA2eRlig6pbcH7WgH/SabwHP2xCrW+DaGYs9vQJADRcd
+X6JzjaA69A6LqiRxUEAcxCDczWLmalFNmTtTcvOdUsIpvFIS92Vgs03yOifmmHWd
+9E3PZmlv6D6Ku+bb4QJBAJ6wJQN2TEnYxlyigcMTSHJv3CUCEpH/YnJKWSI9Q3nH
+KS1dh85jAybIuLrwTOSBJXcCeXPRerbX6SjbjqaQqsw=
+-----END RSA PRIVATE KEY-----
+			</textarea><br />
+			
+			<label for="pubkey">公钥</label>
+			<br />
+			<textarea id="pubkey" rows="15" cols="100">
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCfqAsStaug53dBsHnNUjXTMag9
+C19BRdzKRNdjZnOd2mgwf8WTv80AYD2RNnGrzPkIydBIUUG7EP4ESH5PoasvA+Sr
+uR5IOzvQVvdjc2R6vtuvB9PUtznTHVz2EvsHizy6uyFHomgQwUuFudqhs99aMoLp
+CJwoQX9xFnH5bLgdhQIDAQAB
+-----END PUBLIC KEY-----
+			</textarea><br /><br />
+			
+			<label for="input">待加密文本:</label><br />
+			<textarea id="input" name="input" type="text" rows=4 cols=70>This is a test!</textarea><br />
+			<input id="testme" type="button" value="立即测试" /><br />
+			<div id="result" style="display: none;">
+				<h4>解密结果</h4>
+				<label>原始的数据：</label><input type="text" name="data" id="data" value="" /><br/><br/>
+				<label>加密后数据：</label><textarea rows="5" cols="100" id="encode"></textarea><br/><br/>
+				<label>解密后数据：</label><input type="text" name="decode" id="decode" value="" /><br/><br/>
+			</div>
+		</div>
+		<hr width="30%">
+		<div id="footer" style="margin-bottom: 0;margin-left: 35%;">
+			
+			<a href="https://oktools.net/rsa">在线生成公私钥</a>
+			<br><br> <label>By josxy.cn 开源</label>
+			
+		</div>
+		<hr  width="30%">
+	</body>
+</html>
