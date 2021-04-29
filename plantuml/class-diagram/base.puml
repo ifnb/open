@@ -1,0 +1,112 @@
+@startuml
+'https://plantuml.com/class-diagram
+'https://www.cnblogs.com/jiyuqi/p/4571543.html
+'注释文本 ArrayList关系图
+
+abstract class AbstractList
+abstract AbstractCollection
+interface List
+interface Collection
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+'类
+class ArrayList {
+Object[] elementData
+size()
+}
+
+'枚举
+enum TimeUnit {
+DAYS
+HOURS
+MINUTES
+}
+
+@enduml
+
+@startuml
+abstract        abstract
+abstract class  "abstract class"
+annotation      annotation
+circle          circle
+()              circle_short_form
+class           class
+diamond         diamond
+<>              diamond_short_form
+entity          entity
+enum            enum
+interface       interface
+@enduml
+
+@startuml
+' 定义信息
+class Object
+class 秦始皇
+class 秦二世
+
+' 继承
+Object <|-- 秦始皇
+秦始皇 <|-- 秦二世
+
+' 接口继承
+interface AbstractFactory
+interface FactoryA
+AbstractFactory <|-- FactoryA
+@enduml
+
+@startuml
+' 定义信息
+interface UserService
+class UserServiceImpl
+
+' 实现
+UserService <|.. UserServiceImpl
+
+@enduml
+
+@startuml
+class Food
+class PerSon
+
+' 依赖
+PerSon ..>Food
+@enduml
+
+@startuml
+class Monkey
+class Zoo
+
+' 关联
+Monkey "0.*" <-- "1" Zoo
+@enduml
+
+@startuml
+' 定义信息
+class child
+class family
+
+' 聚合
+child "{0,3}" <--o "1" family: 孩子-家庭
+
+@enduml
+
+@startuml
+
+skinparam class {
+BackgroundColor PaleGreen
+ArrowColor SeaGreen
+BorderColor #FF00FF
+}
+skinparam stereotypeCBackgroundColor YellowGreen
+
+Class01 "1" *-- "many" Class02 : 包含
+
+Class03 o-- Class04 : 聚合
+
+@enduml
