@@ -1,11 +1,10 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-# Datasource local storage ignored files
-/../../../../../:\Code\开源\open\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
 .idea/
 *.iml
 *.class
+cn.allms.open/target/
