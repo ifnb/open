@@ -20,5 +20,7 @@ public class FileServiceTest {
         Employee employeeObj = (Employee) fileService.readFile(employee);
         System.out.println("姓名=> " + employeeObj.getName());
         System.out.println("年龄=> " + employee.getAge());
+        // 使用了transient修饰 并不会序列化该字段
+        System.out.println("备注=> " + employee.getRemark());
     }
 }
